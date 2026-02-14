@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Abhishek Choudhary - Creative Coder & Full Stack Developer. Building innovative solutions with cutting-edge technologies.">
+    <title>Abhishek Choudhary | Creative Coder & Developer</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">AC<span>.</span></a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="nav-toggle" aria-label="toggle navigation">
+                <span class="hamburger"></span>
+            </button>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <span class="greeting">✨ Available for opportunities</span>
+                <h1 class="name">Abhishek <span class="highlight">Choudhary</span></h1>
+                <div class="typing-container">
+                    <span class="static-text">I'm a </span>
+                    <span class="dynamic-text"></span>
+                    <span class="cursor-blink">|</span>
+                </div>
+                <p class="hero-description">B.Tech CSE student at Chitkara University passionate about building innovative solutions and turning complex problems into elegant, efficient code.</p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary">
+                        <i class="fas fa-arrow-right"></i>
+                        View Projects
+                    </a>
+                    <a href="#contact" class="btn btn-secondary">
+                        <i class="fas fa-envelope"></i>
+                        Contact Me
+                    </a>
+                </div>
+                <div class="social-links">
+                    <a href="https://github.com/harshjatt007" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="mailto:abhishek1161.be22@chitkara.edu.in" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="image-container">
+                    <div class="image-glow"></div>
+                    <img src="https://res.cloudinary.com/da7byuahh/image/upload/v1707041908/jatt_dejnrp.jpg" alt="Abhishek Choudhary">
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>Scroll to explore</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title"><span class="title-number">01.</span> About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>I'm a <strong>B.Tech Computer Science</strong> student at Chitkara University, Punjab, with a deep passion for software development and problem-solving.</p>
+                    <p>My journey in programming started with C++ and has since expanded to include Python, JavaScript, and web technologies. I love the process of turning complex problems into elegant, efficient solutions.</p>
+                    <p>When I'm not coding, I'm exploring new technologies, contributing to open-source projects, or working on personal projects that challenge my skills.</p>
+                    <div class="about-highlights">
+                        <div class="highlight-item">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span>B.Tech CSE Student</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Chitkara University, Punjab</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-code"></i>
+                            <span>Full Stack Enthusiast</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-stats">
+                    <div class="stat-card">
+                        <span class="stat-number" data-target="10">0</span><span class="stat-plus">+</span>
+                        <span class="stat-label">Projects Completed</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" data-target="5">0</span><span class="stat-plus">+</span>
+                        <span class="stat-label">Technologies</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" data-target="500">0</span><span class="stat-plus">+</span>
+                        <span class="stat-label">Commits</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title"><span class="title-number">02.</span> Skills & Technologies</h2>
+            <div class="skills-grid">
+                <div class="skill-card" data-skill="cpp">
+                    <div class="skill-icon">
+                        <i class="fab fa-cuttlefish"></i>
+                    </div>
+                    <h3>C++</h3>
+                    <p>Data structures, algorithms, and OOP concepts</p>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-progress="85"></div>
+                    </div>
+                </div>
+                <div class="skill-card" data-skill="python">
+                    <div class="skill-icon">
+                        <i class="fab fa-python"></i>
+                    </div>
+                    <h3>Python</h3>
+                    <p>Scripting, automation, and game development</p>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-progress="80"></div>
+                    </div>
+                </div>
+                <div class="skill-card" data-skill="javascript">
+                    <div class="skill-icon">
+                        <i class="fab fa-js-square"></i>
+                    </div>
+                    <h3>JavaScript</h3>
+                    <p>DOM manipulation and interactive web apps</p>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-progress="70"></div>
+                    </div>
+                </div>
+                <div class="skill-card" data-skill="html">
+                    <div class="skill-icon">
+                        <i class="fab fa-html5"></i>
+                    </div>
+                    <h3>HTML5</h3>
+                    <p>Semantic markup and accessibility</p>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-progress="90"></div>
+                    </div>
+                </div>
+                <div class="skill-card" data-skill="css">
+                    <div class="skill-icon">
+                        <i class="fab fa-css3-alt"></i>
+                    </div>
+                    <h3>CSS3</h3>
+                    <p>Responsive design and animations</p>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-progress="85"></div>
+                    </div>
+                </div>
+                <div class="skill-card" data-skill="git">
+                    <div class="skill-icon">
+                        <i class="fab fa-git-alt"></i>
+                    </div>
+                    <h3>Git</h3>
+                    <p>Version control and collaboration</p>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-progress="75"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title"><span class="title-number">03.</span> Featured Project</h2>
+            <div class="project-showcase">
+                <div class="project-card featured">
+                    <div class="project-image">
+                        <img src="https://res.cloudinary.com/da7byuahh/image/upload/v1707041898/snakewatergungame_au1o7w.jpg" alt="Snake Water Gun Game">
+                        <div class="project-overlay">
+                            <a href="https://github.com/harshjatt007/snakewatergun.git" target="_blank" rel="noopener noreferrer" class="project-link">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-tag">Python Game</span>
+                        <h3>Snake Water Gun Game</h3>
+                        <p>A classic hand game implemented in Python with an intelligent computer opponent. Features include randomized AI decisions, score tracking, and an interactive command-line interface.</p>
+                        <div class="project-tech">
+                            <span>Python</span>
+                            <span>Random Module</span>
+                            <span>CLI</span>
+                        </div>
+                        <a href="https://github.com/harshjatt007/snakewatergun.git" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                            <i class="fab fa-github"></i> View on GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title"><span class="title-number">04.</span> Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Let's work together</h3>
+                    <p>I'm currently looking for new opportunities and my inbox is always open. Whether you have a question, want to collaborate on a project, or just want to say hi, I'll get back to you!</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:abhishek1161.be22@chitkara.edu.in">abhishek1161.be22@chitkara.edu.in</a>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Punjab, India</span>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" required>
+                        <label for="name">Your Name</label>
+                        <span class="form-line"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" required>
+                        <label for="email">Your Email</label>
+                        <span class="form-line"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="subject" name="subject" required>
+                        <label for="subject">Subject</label>
+                        <span class="form-line"></span>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" name="message" rows="4" required></textarea>
+                        <label for="message">Your Message</label>
+                        <span class="form-line"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <span>Send Message</span>
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>Designed & Built by <span class="highlight">Abhishek Choudhary</span></p>
+                <div class="footer-links">
+                    <a href="https://github.com/harshjatt007" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+                    <a href="mailto:abhishek1161.be22@chitkara.edu.in"><i class="fas fa-envelope"></i></a>
+                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+            <p class="copyright">&copy; 2024 Abhishek Choudhary. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="javascript.js"></script>
+</body>
+</html>
