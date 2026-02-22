@@ -18,6 +18,9 @@ import {
   Zap,
 } from 'lucide-react';
 
+const BASE_PATH = process.env.NODE_ENV === 'production' ? '/Portfoliomain' : '';
+const withBasePath = (path: string) => `${BASE_PATH}${path}`;
+
 /* ============================================
    DATA
    ============================================ */
@@ -48,7 +51,7 @@ const PROJECTS = [
     description:
       'A talent showcase platform where creators can upload videos, compete in battles, and get rated by the community.',
     tech: ['React', 'JavaScript', 'CSS'],
-    image: '/image.png',
+    image: withBasePath('/image.png'),
     github: 'https://github.com/harshjatt007/Latent',
     imageAlt: 'Latent project preview',
   },
@@ -58,7 +61,7 @@ const PROJECTS = [
     description:
       'A malware-scanning project with an upload-based scanning flow, report area, and live status updates for threat checks.',
     tech: ['Python', 'Security', 'Web UI'],
-    image: '/trojan-trap.png',
+    image: withBasePath('/trojan-trap.png'),
     github: 'https://github.com/harshjatt007/Trojan-Trap',
     imageAlt: 'Trojan Trap project preview',
   },
