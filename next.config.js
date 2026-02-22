@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'export',
+  basePath: '/Portfoliomain',
+  assetPrefix: '/Portfoliomain',
   images: {
     remotePatterns: [
       {
@@ -11,6 +14,7 @@ const nextConfig = {
         hostname: 'i.pravatar.cc',
       },
     ],
+    unoptimized: true,
   },
 }
 
