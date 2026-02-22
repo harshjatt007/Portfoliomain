@@ -1,9 +1,11 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { ChangeEvent, FormEvent, useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import {
   ArrowUpRight,
+  CheckCircle,
+  ChevronUp,
   Code2,
   Github,
   GraduationCap,
@@ -12,6 +14,7 @@ import {
   MapPin,
   Send,
   Sparkles,
+  XCircle,
   Zap,
 } from 'lucide-react';
 
@@ -36,8 +39,30 @@ const PROFILE = {
   email: 'abhishek1161.be22@chitkara.edu.in',
   github: 'harshjatt007',
   photo: 'https://res.cloudinary.com/da7byuahh/image/upload/v1707041908/jatt_dejnrp.jpg',
-  projectImg: 'https://res.cloudinary.com/da7byuahh/image/upload/v1707041898/snakewatergungame_au1o7w.jpg',
 };
+
+const PROJECTS = [
+  {
+    type: 'Web Platform',
+    title: 'Latent',
+    description:
+      'A talent showcase platform where creators can upload videos, compete in battles, and get rated by the community.',
+    tech: ['React', 'JavaScript', 'CSS'],
+    image: '/image.png',
+    github: 'https://github.com/harshjatt007/Latent',
+    imageAlt: 'Latent project preview',
+  },
+  {
+    type: 'Cybersecurity Tool',
+    title: 'Trojan Trap',
+    description:
+      'A malware-scanning project with an upload-based scanning flow, report area, and live status updates for threat checks.',
+    tech: ['Python', 'Security', 'Web UI'],
+    image: '/trojan-trap.png',
+    github: 'https://github.com/harshjatt007/Trojan-Trap',
+    imageAlt: 'Trojan Trap project preview',
+  },
+];
 
 /* ============================================
    ANIMATION VARIANTS
@@ -136,8 +161,82 @@ function SkillCard({ skill, visible }: { skill: typeof SKILLS[0]; visible: boole
 export default function Home() {
   const typed = useTyping(ROLES);
   const scrolled = useScrolled();
+  const showTop = useScrolled(400);
   const skills = useInView();
   const [mobileNav, setMobileNav] = useState(false);
+
+  // Lock body scroll when mobile nav is open
+  useEffect(() => {
+    document.body.style.overflow = mobileNav ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [mobileNav]);
+
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: '',
+  });
+  const [submitNote, setSubmitNote] = useState('');
+  const [submitStatus, setSubmitStatus] = useState<'success' | 'error' | ''>('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitNote('');
+    setSubmitStatus('');
+
+    try {
+      const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
+      if (!accessKey) {
+        setSubmitNote('Form key missing. Add NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY in .env.local.');
+        setSubmitStatus('error');
+        return;
+      }
+
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          access_key: accessKey,
+          from_name: 'Portfolio Contact Form',
+          subject: `[Portfolio] ${formData.subject}`,
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok || !result?.success) {
+        setSubmitNote(result?.error || 'Failed to send message. Please try again.');
+        setSubmitStatus('error');
+        return;
+      }
+
+      setFormData({
+        name: '',
+        email: '',
+        subject: '',
+        message: '',
+      });
+      setSubmitNote('Message sent successfully!');
+      setSubmitStatus('success');
+      setTimeout(() => { setSubmitNote(''); setSubmitStatus(''); }, 5000);
+    } catch {
+      setSubmitNote('Unable to send message right now. Please try again shortly.');
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <div className="wrapper">
@@ -147,6 +246,12 @@ export default function Home() {
         <div className="ambient-orb" />
         <div className="ambient-orb" />
       </div>
+
+      {/* Mobile nav overlay */}
+      <div
+        className={`nav-overlay${mobileNav ? ' active' : ''}`}
+        onClick={() => setMobileNav(false)}
+      />
 
       {/* Navbar */}
       <nav className={`navbar${scrolled ? ' scrolled' : ''}`}>
@@ -345,55 +450,55 @@ export default function Home() {
         <div className="container">
           <motion.div className="section-header" variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} custom={0}>
             <span className="section-label">// projects</span>
-            <h2 className="section-title">Featured Project</h2>
+            <h2 className="section-title">Featured Projects</h2>
             <p className="section-sub">Showcasing work that I&apos;m proud of.</p>
           </motion.div>
 
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            custom={0.1}
-          >
-            <div className="project-card">
-              <div className="project-img-area">
-                <img src={PROFILE.projectImg} alt="Snake Water Gun Game" />
-                <div className="project-overlay">
+          {PROJECTS.map((project, index) => (
+            <motion.div
+              key={project.title}
+              className="project-wrapper"
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              custom={0.1 + index * 0.08}
+            >
+              <div className="project-card">
+                <div className="project-img-area">
+                  <img src={project.image} alt={project.imageAlt} />
+                  <div className="project-overlay">
+                    <a
+                      className="project-overlay-link"
+                      href={project.github}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <Github size={24} />
+                    </a>
+                  </div>
+                </div>
+                <div className="project-info">
+                  <span className="project-type">{project.type}</span>
+                  <h3>{project.title}</h3>
+                  <p>{project.description}</p>
+                  <div className="project-tech">
+                    {project.tech.map((item) => (
+                      <span key={item}>{item}</span>
+                    ))}
+                  </div>
                   <a
-                    className="project-overlay-link"
-                    href="https://github.com/harshjatt007/snakewatergun.git"
+                    className="project-link"
+                    href={project.github}
                     target="_blank"
                     rel="noreferrer"
                   >
-                    <Github size={24} />
+                    View on GitHub <ArrowUpRight size={16} />
                   </a>
                 </div>
               </div>
-              <div className="project-info">
-                <span className="project-type">Python Game</span>
-                <h3>Snake Water Gun Game</h3>
-                <p>
-                  A classic hand game implemented in Python with an intelligent computer opponent.
-                  Features include randomized AI decisions, score tracking, and an interactive
-                  command-line interface.
-                </p>
-                <div className="project-tech">
-                  <span>Python</span>
-                  <span>Random Module</span>
-                  <span>CLI</span>
-                </div>
-                <a
-                  className="project-link"
-                  href="https://github.com/harshjatt007/snakewatergun.git"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  View on GitHub <ArrowUpRight size={16} />
-                </a>
-              </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          ))}
         </div>
       </section>
 
@@ -433,31 +538,46 @@ export default function Home() {
               whileInView="show"
               viewport={{ once: true }}
               custom={0.2}
-              onSubmit={(e) => e.preventDefault()}
+              onSubmit={handleSubmit}
             >
               <div className="form-group">
-                <input type="text" id="name" name="name" required />
+                <input type="text" id="name" name="name" required value={formData.name} onChange={handleChange} />
                 <label htmlFor="name">Your Name</label>
               </div>
               <div className="form-group">
-                <input type="email" id="email" name="email" required />
+                <input type="email" id="email" name="email" required value={formData.email} onChange={handleChange} />
                 <label htmlFor="email">Your Email</label>
               </div>
               <div className="form-group">
-                <input type="text" id="subject" name="subject" required />
+                <input type="text" id="subject" name="subject" required value={formData.subject} onChange={handleChange} />
                 <label htmlFor="subject">Subject</label>
               </div>
               <div className="form-group">
-                <textarea id="message" name="message" rows={4} required />
+                <textarea id="message" name="message" rows={4} required value={formData.message} onChange={handleChange} />
                 <label htmlFor="message">Your Message</label>
               </div>
-              <button type="submit" className="form-submit">
-                <Send size={18} /> Send Message
+              <button type="submit" className="form-submit" disabled={isSubmitting}>
+                <Send size={18} /> {isSubmitting ? 'Sending...' : 'Send Message'}
               </button>
+              {submitNote && (
+                <div className={`form-status ${submitStatus}`}>
+                  {submitStatus === 'success' ? <CheckCircle size={18} /> : <XCircle size={18} />}
+                  <span>{submitNote}</span>
+                </div>
+              )}
             </motion.form>
           </div>
         </div>
       </section>
+
+      {/* Back to top */}
+      <button
+        className={`back-to-top${showTop ? ' visible' : ''}`}
+        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        aria-label="Back to top"
+      >
+        <ChevronUp size={20} />
+      </button>
 
       {/* Footer */}
       <footer className="footer">
