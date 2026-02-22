@@ -2,6 +2,7 @@
 const nextConfig = {
   output: 'export',
   basePath: '/Portfoliomain',
+  assetPrefix: '/Portfoliomain/',
   distDir: 'docs',
   images: {
     remotePatterns: [
